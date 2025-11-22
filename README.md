@@ -110,6 +110,25 @@ industrial-openapi-iac/
 
 ---
 
+## GitHub Setup
+
+### Quick Push to GitHub
+
+```bash
+# Option 1: Automated push (recommended)
+./scripts/push-to-github.sh [username] [repo-name]
+
+# Example:
+./scripts/push-to-github.sh dwivediv industrial-openapi-iac
+
+# Option 2: Create repo and push (requires GitHub CLI)
+./scripts/setup-github-repo.sh [username] [repo-name]
+```
+
+**See [docs/GITHUB_SETUP.md](./docs/GITHUB_SETUP.md) for detailed setup instructions.**
+
+---
+
 ## Quick Start
 
 ### Option A: Local Testing (Recommended First)
