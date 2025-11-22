@@ -13,8 +13,13 @@ help: ## Show this help message
 	@echo '${YELLOW}LocalStack Targets:${RESET}'
 	@echo '  ${GREEN}localstack-start${RESET}        Start LocalStack container'
 	@echo '  ${GREEN}localstack-stop${RESET}         Stop LocalStack container'
+	@echo '  ${GREEN}localstack-restart${RESET}      Restart LocalStack container'
+	@echo '  ${GREEN}localstack-pause${RESET}        Pause LocalStack (keeps in memory)'
+	@echo '  ${GREEN}localstack-unpause${RESET}      Unpause LocalStack'
+	@echo '  ${GREEN}localstack-status${RESET}       Check LocalStack status'
 	@echo '  ${GREEN}localstack-logs${RESET}         View LocalStack logs'
 	@echo '  ${GREEN}localstack-health${RESET}       Check LocalStack health'
+	@echo '  ${GREEN}localstack-reset${RESET}        Reset LocalStack (removes data)'
 	@echo ''
 	@echo '${YELLOW}Testing Targets:${RESET}'
 	@echo '  ${GREEN}test-local${RESET}              Run all local tests'
@@ -42,6 +47,39 @@ localstack-start: ## Start LocalStack container
 localstack-stop: ## Stop LocalStack container
 	@echo "${YELLOW}Stopping LocalStack...${RESET}"
 	docker-compose down
+
+localstack-restart: ## Restart LocalStack container
+	@echo "${YELLOW}Restarting LocalStack...${RESET}"
+	docker-compose restart localstack
+	@echo "${GREEN}Waiting for LocalStack to be ready...${RESET}"
+	@timeout 60 bash -c 'until curl -s http://localhost:4566/_localstack/health | grep -q "\"s3\": \"available\""; do sleep 2; done' || true
+	@echo "${GREEN}LocalStack is ready!${RESET}"
+
+localstack-pause: ## Pause LocalStack container (keeps in memory)
+	@echo "${YELLOW}Pausing LocalStack...${RESET}"
+	docker pause localstack || echo "${YELLOW}Container not running or doesn't exist${RESET}"
+
+localstack-unpause: ## Unpause LocalStack container
+	@echo "${YELLOW}Unpausing LocalStack...${RESET}"
+	docker unpause localstack || echo "${YELLOW}Container not paused or doesn't exist${RESET}"
+
+localstack-status: ## Check LocalStack container status
+	@echo "${YELLOW}LocalStack Status:${RESET}"
+	@docker-compose ps localstack || docker ps -a | grep localstack || echo "${YELLOW}LocalStack container not found${RESET}"
+
+localstack-reset: ## Reset LocalStack (stop, remove data, start fresh)
+	@echo "${RED}WARNING: This will remove all LocalStack data!${RESET}"
+	@read -p "Are you sure? (y/N): " -n 1 -r; \
+	echo; \
+	if [[ $$REPLY =~ ^[Yy]$$ ]]; then \
+		echo "${YELLOW}Stopping and removing LocalStack...${RESET}"; \
+		docker-compose down -v; \
+		rm -rf localstack-data/ moto-data/; \
+		echo "${GREEN}Starting fresh LocalStack...${RESET}"; \
+		$(MAKE) localstack-start; \
+	else \
+		echo "${YELLOW}Cancelled${RESET}"; \
+	fi
 
 localstack-logs: ## View LocalStack logs
 	docker-compose logs -f localstack
