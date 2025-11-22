@@ -1,0 +1,21 @@
+# LocalStack Environment Variables
+# Copy this file to .localstack-env and customize as needed
+
+# AWS Credentials (for LocalStack)
+AWS_ACCESS_KEY_ID=test
+AWS_SECRET_ACCESS_KEY=test
+AWS_DEFAULT_REGION=us-east-1
+
+# LocalStack Configuration
+LOCALSTACK_HOST=localhost
+LOCALSTACK_PORT=4566
+LOCALSTACK_ENDPOINT=http://localhost:4566
+
+# Terraform Backend
+TF_BACKEND_BUCKET=terraform-state-local
+TF_BACKEND_DYNAMODB_TABLE=terraform-state-lock
+
+# Testing
+SKIP_DASHBOARDS=true
+SKIP_ALERTS=true
+

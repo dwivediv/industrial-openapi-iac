@@ -112,6 +112,33 @@ industrial-openapi-iac/
 
 ## Quick Start
 
+### Option A: Local Testing (Recommended First)
+
+Test infrastructure locally with LocalStack before deploying to AWS:
+
+```bash
+# Setup local testing environment
+./scripts/setup-local-testing.sh
+
+# Or use Make commands
+make localstack-start
+
+# Validate configuration
+make validate
+
+# Test with LocalStack
+make plan-local
+make apply-local
+
+# Clean up
+make destroy-local
+make localstack-stop
+```
+
+**See [TESTING.md](./TESTING.md) for detailed local testing guide.**
+
+### Option B: Deploy to AWS
+
 ### 1. Setup Remote State Backend
 
 ```bash
@@ -133,7 +160,7 @@ vim environments/dev/terraform.tfvars
 
 ```bash
 cd environments/dev
-terraform init
+terraform init -backend-config=backend.tfvars
 ```
 
 ### 4. Plan and Apply
@@ -277,10 +304,11 @@ See [DASHBOARDS.md](./docs/DASHBOARDS.md) for detailed dashboard documentation.
 
 ## Documentation
 
-- [ENVIRONMENT_SETUP.md](./docs/ENVIRONMENT_SETUP.md): Detailed environment setup
-- [DEPLOYMENT.md](./docs/DEPLOYMENT.md): Deployment procedures
+- **[TESTING.md](./TESTING.md)**: Local testing guide with LocalStack ⭐ **Start Here!**
 - [DASHBOARDS.md](./docs/DASHBOARDS.md): Dashboard setup and usage
 - [MULTI_ACCOUNT_SETUP.md](./docs/MULTI_ACCOUNT_SETUP.md): Multi-account configuration
+- [ENVIRONMENT_SETUP.md](./docs/ENVIRONMENT_SETUP.md): Detailed environment setup (TODO)
+- [DEPLOYMENT.md](./docs/DEPLOYMENT.md): Deployment procedures (TODO)
 
 ---
 

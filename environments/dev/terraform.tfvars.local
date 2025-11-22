@@ -1,0 +1,48 @@
+# Development Environment Configuration for LocalStack Testing
+# This file is used for local testing with LocalStack
+
+environment = "dev"
+aws_region  = "us-east-1"
+aws_account_id = "000000000000" # LocalStack uses test account
+
+project_name = "industrial-marketplace-local"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+
+# Multi-region (disabled for local)
+enable_multi_region = false
+
+# ECS Scaling (Minimal for local testing)
+min_ecs_capacity = 1
+max_ecs_capacity = 5
+desired_ecs_capacity = 2
+
+# Cost Optimization
+enable_spot_instances = false # Disable for local testing
+spot_instance_percentage = 0
+enable_scheduled_scaling = false
+
+# Database (Minimal for local testing)
+enable_dax = false
+dax_node_count = 0
+redis_node_count = 1
+use_reserved_instances = false
+
+# Aurora Serverless v2
+aurora_min_capacity = 2
+aurora_max_capacity = 4
+
+# Monitoring (Simplified for local)
+enable_cloudwatch_dashboards = false # Disable dashboards for local testing
+enable_alerts = false
+alert_email = ""
+
+# Additional Tags
+additional_tags = {
+  Team       = "Platform"
+  Owner      = "DevOps"
+  Environment = "Local"
+  Testing    = "true"
+}
+

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"            # LocalStack Gateway
+      - "4510-4559:4510-4559"  # External services port range
+    environment:
+      - SERVICES=ec2,s3,dynamodb,rds,ecs,lambda,apigateway,cloudfront,elasticache,logs,cloudwatch,iam,sts,route53,secretsmanager
+      - DEBUG=${DEBUG-0}
+      - DATA_DIR=${DATA_DIR-/tmp/localstack/data}
+      - LAMBDA_EXECUTOR=docker
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - HOST_TMP_FOLDER=${TMPDIR:-/tmp}/localstack
+      - PERSISTENCE=1
+      - LAMBDA_REMOTE_DOCKER=false
+      - LAMBDA_REMOVE_CONTAINERS=true
+    volumes:
+      - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./localstack-data:/var/lib/localstack"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Optional: Add Moto for additional AWS service simulation
+  moto:
+    container_name: moto
+    image: motoserver/moto:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - SERVICES=s3,ec2,dynamodb
+    volumes:
+      - "./moto-data:/var/lib/moto"
+

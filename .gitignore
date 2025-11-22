@@ -3,6 +3,8 @@
 *.tfstate.*
 *.tfvars
 !*.tfvars.example
+!*.tfvars.local
+!backend.tfvars.local
 .terraform/
 .terraform.lock.hcl
 crash.log
@@ -15,6 +17,8 @@ override.tf.json
 # Environment-specific files (do not commit secrets)
 environments/*/terraform.tfvars
 environments/*/backend.tfvars
+!environments/*/backend.tfvars.local
+!environments/*/terraform.tfvars.local
 
 # OS files
 .DS_Store
@@ -39,3 +43,11 @@ Thumbs.db
 *.tmp
 *.temp
 
+# LocalStack data
+localstack-data/
+moto-data/
+.localstack-env
+
+# Test artifacts
+tests/*.tfstate
+tests/.terraform/
