@@ -5,7 +5,7 @@ resource "aws_cloudwatch_dashboard" "infrastructure_compute" {
   count          = var.enable_dashboards ? 1 : 0
   dashboard_name = "${var.project_name}-${var.environment}-infrastructure-compute"
   dashboard_body = jsonencode({
-    widgets = jsondecode(file("${path.module}/../../../dashboards/infrastructure/compute-dashboard.json")).widgets
+    widgets = try(jsondecode(file("${path.module}/../../../dashboards/infrastructure/compute-dashboard.json")).widgets, [])
   })
 
   tags = var.tags
