@@ -1,0 +1,73 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ECS", "CPUUtilization", {"stat": "Average", "label": "CPU Utilization"}],
+          [".", "MemoryUtilization", {"stat": "Average", "label": "Memory Utilization"}],
+          [".", "RunningTaskCount", {"stat": "Average", "label": "Running Tasks"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "ECS Fargate Metrics",
+        "yAxis": {
+          "left": {"min": 0, "max": 100}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ECS", "DesiredTaskCount", {"stat": "Average"}],
+          [".", "RunningTaskCount", {"stat": "Average"}],
+          [".", "PendingTaskCount", {"stat": "Average"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "ECS Task Scaling",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/Lambda", "Invocations", {"stat": "Sum"}],
+          [".", "Errors", {"stat": "Sum"}],
+          [".", "Duration", {"stat": "Average"}]
+        ],
+        "period": 300,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "Lambda Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApplicationELB", "TargetResponseTime", {"stat": "p95"}],
+          [".", "HTTPCode_Target_5XX_Count", {"stat": "Sum"}],
+          [".", "RequestCount", {"stat": "Sum"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Application Load Balancer",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    }
+  ]
+}
+

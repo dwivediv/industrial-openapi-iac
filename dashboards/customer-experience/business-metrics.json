@@ -1,0 +1,79 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/Cognito", "SignUpAttempts", {"stat": "Sum"}],
+          [".", "SignInSuccesses", {"stat": "Sum"}],
+          [".", "SignInThrottles", {"stat": "Sum"}]
+        ],
+        "period": 3600,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "User Authentication Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/DynamoDB", "ItemCount", {"stat": "Average", "dimensions": {"TableName": "equipment"}}]
+        ],
+        "period": 3600,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Total Equipment Count",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApiGateway", "Count", {"stat": "Sum", "dimensions": {"ApiName": "equipment-api", "Method": "GET", "Resource": "/equipment"}}],
+          [".", "Count", {"stat": "Sum", "dimensions": {"ApiName": "equipment-api", "Method": "POST", "Resource": "/equipment"}}]
+        ],
+        "period": 3600,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "Equipment API Activity",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApiGateway", "Count", {"stat": "Sum", "dimensions": {"ApiName": "equipment-api", "Resource": "/equipment/search"}}],
+          [".", "Latency", {"stat": "p95", "dimensions": {"ApiName": "equipment-api", "Resource": "/equipment/search"}}]
+        ],
+        "period": 300,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "Search Activity & Performance",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "log",
+      "properties": {
+        "query": "SOURCE '/aws/apigateway/equipment-api' | fields @timestamp, @message\n| filter @message like /equipment/\n| stats count() by bin(5m)",
+        "region": "us-east-1",
+        "title": "Equipment API Request Trends",
+        "view": "timeSeries",
+        "stacked": false
+      }
+    }
+  ]
+}
+

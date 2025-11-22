@@ -1,0 +1,95 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/DynamoDB", "ConsumedReadCapacityUnits", {"stat": "Sum"}],
+          [".", "ConsumedWriteCapacityUnits", {"stat": "Sum"}],
+          [".", "ThrottledReadRequests", {"stat": "Sum"}],
+          [".", "ThrottledWriteRequests", {"stat": "Sum"}]
+        ],
+        "period": 300,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "DynamoDB Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/DAX", "CacheHits", {"stat": "Sum"}],
+          [".", "CacheMisses", {"stat": "Sum"}],
+          [".", "CacheHitRate", {"stat": "Average"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "DAX Cache Performance",
+        "yAxis": {
+          "left": {"min": 0, "max": 100}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ElastiCache", "CPUUtilization", {"stat": "Average"}],
+          [".", "NetworkBytesIn", {"stat": "Sum"}],
+          [".", "NetworkBytesOut", {"stat": "Sum"}],
+          [".", "CacheHits", {"stat": "Sum"}],
+          [".", "CacheMisses", {"stat": "Sum"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "ElastiCache Redis Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/RDS", "CPUUtilization", {"stat": "Average"}],
+          [".", "DatabaseConnections", {"stat": "Average"}],
+          [".", "ReadLatency", {"stat": "p95"}],
+          [".", "WriteLatency", {"stat": "p95"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Aurora PostgreSQL Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ES", "SearchLatency", {"stat": "p95"}],
+          [".", "IndexingLatency", {"stat": "p95"}],
+          [".", "ClusterStatus.green", {"stat": "Average"}],
+          [".", "ClusterStatus.red", {"stat": "Average"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "OpenSearch Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    }
+  ]
+}
+

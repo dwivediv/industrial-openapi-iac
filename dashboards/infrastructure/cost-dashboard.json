@@ -1,0 +1,56 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/Billing", "EstimatedCharges", {"stat": "Maximum", "dimensions": {"Currency": "USD"}}]
+        ],
+        "period": 86400,
+        "stat": "Maximum",
+        "region": "us-east-1",
+        "title": "Daily Estimated Charges (USD)",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/Billing", "EstimatedCharges", {"stat": "Maximum", "dimensions": {"ServiceName": "Amazon Elastic Compute Cloud - Compute"}}],
+          [".", "EstimatedCharges", {"stat": "Maximum", "dimensions": {"ServiceName": "Amazon DynamoDB"}}],
+          [".", "EstimatedCharges", {"stat": "Maximum", "dimensions": {"ServiceName": "Amazon Relational Database Service"}}],
+          [".", "EstimatedCharges", {"stat": "Maximum", "dimensions": {"ServiceName": "Amazon CloudFront"}}],
+          [".", "EstimatedCharges", {"stat": "Maximum", "dimensions": {"ServiceName": "Amazon API Gateway"}}]
+        ],
+        "period": 86400,
+        "stat": "Maximum",
+        "region": "us-east-1",
+        "title": "Cost by Service (Daily)",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ECS", "RunningTaskCount", {"stat": "Average"}],
+          ["AWS/Lambda", "Invocations", {"stat": "Sum"}],
+          ["AWS/DynamoDB", "ConsumedReadCapacityUnits", {"stat": "Sum"}]
+        ],
+        "period": 3600,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Resource Utilization vs Cost",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    }
+  ]
+}
+

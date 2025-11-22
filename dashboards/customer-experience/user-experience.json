@@ -1,0 +1,85 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/CloudFront", "CacheHitRate", {"stat": "Average", "label": "Cache Hit Rate"}],
+          [".", "Requests", {"stat": "Sum", "label": "Total Requests"}]
+        ],
+        "period": 3600,
+        "stat": "Average",
+        "region": "Global",
+        "title": "CloudFront Cache Performance",
+        "yAxis": {
+          "left": {"min": 0, "max": 100, "label": "Percentage"}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/CloudFront", "4xxErrorRate", {"stat": "Average"}],
+          [".", "5xxErrorRate", {"stat": "Average"}]
+        ],
+        "period": 3600,
+        "stat": "Average",
+        "region": "Global",
+        "title": "CloudFront Error Rates",
+        "yAxis": {
+          "left": {"min": 0, "max": 100, "label": "Percentage"}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApplicationELB", "TargetResponseTime", {"stat": "p95"}],
+          [".", "RequestCount", {"stat": "Sum"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Page Load Performance",
+        "yAxis": {
+          "left": {"min": 0, "label": "seconds"}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/DAX", "CacheHitRate", {"stat": "Average"}],
+          ["AWS/ElastiCache", "CacheHitRate", {"stat": "Average"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Cache Hit Rates (User Experience)",
+        "yAxis": {
+          "left": {"min": 0, "max": 100, "label": "Percentage"}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ES", "SearchLatency", {"stat": "p95"}],
+          [".", "SuccessfulRequests", {"stat": "Sum"}]
+        ],
+        "period": 300,
+        "stat": "Average",
+        "region": "us-east-1",
+        "title": "Search Performance",
+        "yAxis": {
+          "left": {"min": 0, "label": "ms"}
+        }
+      }
+    }
+  ]
+}
+

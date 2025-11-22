@@ -1,0 +1,77 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApiGateway", "Count", {"stat": "Sum"}],
+          [".", "4XXError", {"stat": "Sum"}],
+          [".", "5XXError", {"stat": "Sum"}],
+          [".", "Latency", {"stat": "p95"}]
+        ],
+        "period": 300,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "API Gateway Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/CloudFront", "Requests", {"stat": "Sum"}],
+          [".", "BytesDownloaded", {"stat": "Sum"}],
+          [".", "BytesUploaded", {"stat": "Sum"}],
+          [".", "CacheHitRate", {"stat": "Average"}]
+        ],
+        "period": 3600,
+        "stat": "Sum",
+        "region": "Global",
+        "title": "CloudFront Metrics",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApplicationELB", "RequestCount", {"stat": "Sum"}],
+          [".", "TargetResponseTime", {"stat": "p95"}],
+          [".", "HTTPCode_Target_2XX_Count", {"stat": "Sum"}],
+          [".", "HTTPCode_Target_4XX_Count", {"stat": "Sum"}],
+          [".", "HTTPCode_Target_5XX_Count", {"stat": "Sum"}]
+        ],
+        "period": 300,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "Application Load Balancer",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    },
+    {
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/ApiGateway", "CacheHitCount", {"stat": "Sum"}],
+          [".", "CacheMissCount", {"stat": "Sum"}],
+          [".", "CacheCount", {"stat": "Average"}]
+        ],
+        "period": 300,
+        "stat": "Sum",
+        "region": "us-east-1",
+        "title": "API Gateway Caching",
+        "yAxis": {
+          "left": {"min": 0}
+        }
+      }
+    }
+  ]
+}
+
