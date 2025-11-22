@@ -1,53 +1,276 @@
-# Terraform files
+# ===========================================
+# Terraform Files
+# ===========================================
 *.tfstate
 *.tfstate.*
+*.tfstate.backup
+*.tfstate.lock.info
+*.tfplan
 *.tfvars
 !*.tfvars.example
-!*.tfvars.local
-!backend.tfvars.local
+!*.tfvars.local.example
+!backend.tfvars.local.example
 .terraform/
 .terraform.lock.hcl
+.terraformrc
+terraform.rc
 crash.log
 crash.*.log
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+*.tfvars.json
 
-# Environment-specific files (do not commit secrets)
+# ===========================================
+# Environment-Specific Files
+# ===========================================
+# Do not commit actual environment variables/secrets
 environments/*/terraform.tfvars
 environments/*/backend.tfvars
 !environments/*/backend.tfvars.local
 !environments/*/terraform.tfvars.local
 
-# OS files
-.DS_Store
-Thumbs.db
+# Allow example files
+!**/*.example
+!**/*.local.example
 
-# IDE files
-.idea/
-.vscode/
+# ===========================================
+# AWS Credentials & Secrets
+# ===========================================
+.aws/
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.p7b
+*.p7r
+*.srl
+.env
+.env.local
+.env.*.local
+*.env
+secrets/
+*.secret
+credentials
+config
+*.credentials
+
+# ===========================================
+# LocalStack & Testing
+# ===========================================
+localstack-data/
+moto-data/
+.localstack-env
+.localstack/
+localstack/
+*.localstack
+
+# ===========================================
+# OS Files
+# ===========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
 *.swp
 *.swo
 *~
 
-# AWS credentials
-.aws/
-*.pem
-*.key
+# ===========================================
+# IDE & Editor Files
+# ===========================================
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+*.iml
+*.ipr
+*.iws
+.vscode-test
+.history/
 
+# ===========================================
 # Logs
+# ===========================================
 *.log
+logs/
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
-# Temporary files
+# ===========================================
+# Temporary Files
+# ===========================================
 *.tmp
 *.temp
+*.cache
+.cache/
+tmp/
+temp/
+*.bak
+*.backup
+*.old
+*.orig
 
-# LocalStack data
-localstack-data/
-moto-data/
-.localstack-env
-
-# Test artifacts
-tests/*.tfstate
+# ===========================================
+# Test Artifacts
+# ===========================================
 tests/.terraform/
+tests/*.tfstate
+tests/*.tfstate.*
+tests/.terraform.lock.hcl
+test-results/
+coverage/
+.nyc_output/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ===========================================
+# Build Artifacts
+# ===========================================
+dist/
+build/
+out/
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ===========================================
+# Node.js (if using Node tools)
+# ===========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm
+.eslintcache
+.stylelintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+
+# ===========================================
+# Python (if using Python tools)
+# ===========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# ===========================================
+# Go (if using Go/Terratest)
+# ===========================================
+*.test
+*.out
+go.work
+vendor/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# ===========================================
+# Documentation Build
+# ===========================================
+docs/_build/
+site/
+_site/
+
+# ===========================================
+# Miscellaneous
+# ===========================================
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+.spago/
+*.pid
+*.seed
+*.pid.lock
+.npm
+.yarn-integrity
+.tern-port
+.nyc_output
+.grunt
+bower_components
+.lock-wscript
+jspm_packages/
+typings/
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# ===========================================
+# GitHub
+# ===========================================
+.github/PULL_REQUEST_TEMPLATE.md
+!.github/PULL_REQUEST_TEMPLATE.md
+
+# ===========================================
+# Makefile
+# ===========================================
+# Keep Makefile but ignore any generated makefiles
+Makefile.local
+makefile.local
+
+# ===========================================
+# Terraform Workspace Files
+# ===========================================
+.terraform.tfstate.lock.info
+.terraform.tfstate.lock.info.*
+.terraform/
