@@ -77,3 +77,5 @@ echo -e "  ${YELLOW}make apply-local${NC}     - Apply to LocalStack"
 echo -e "  ${YELLOW}make localstack-logs${NC} - View LocalStack logs"
 echo -e "  ${YELLOW}make localstack-health${NC} - Check LocalStack health"
 
+
+
